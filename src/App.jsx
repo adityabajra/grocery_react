@@ -5,8 +5,18 @@ import "./App.css";
 import Items from "./components/Items";
 import { groceryItems } from "./data/groceryItems.js";
 
-function App() {
-  const [count, setCount] = useState(0);
+const App = () => {
+  const [items, setItems] = useState(groceryItems);
+
+  const editCompleted = (itemId) => {
+    const newItems = items.map((item) => {
+      if (item.id === itemId) {
+        return { ...item, completed: !item.completed };
+      }
+      return item;
+    });
+    setItems(newItems);
+  };
 
   return (
     <>
@@ -15,6 +25,6 @@ function App() {
       </section>
     </>
   );
-}
+};
 
 export default App;
